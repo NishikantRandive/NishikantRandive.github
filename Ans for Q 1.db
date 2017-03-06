@@ -1,0 +1,81 @@
+mysql> create database CompuMatrice;
+
+Query OK, 1 row affected (0.16 sec)
+
+mysql> use compumat;
+Database changed
+
+mysql> create table registration(username varchar(10) primary key, password varchar(
+15),confirm_password varchar(15),first_name varchar(20),last_name varchar(20),em
+ail varchar(20),phone_no int,location varchar(20));
+Query OK, 0 rows affected (0.78 sec)
+
+mysql> desc register;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| username         | varchar(10) | NO   | PRI | NULL    |       |
+| password         | varchar(15) | YES  |     | NULL    |       |
+| confirm_password | varchar(15) | YES  |     | NULL    |       |
+| first_name       | varchar(20) | YES  |     | NULL    |       |
+| last_name        | varchar(20) | YES  |     | NULL    |       |
+| email            | varchar(20) | YES  |     | NULL    |       |
+| phone_no         | int(11)     | YES  |     | NULL    |       |
+| location         | varchar(20) | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.26 sec)
+
+mysql>
+
+mysql> select * from registration;
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+| username | password | confirm_password | first_name | last_name | email
+    | phone_no  | location |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+|          |          |                  |            |           |
+    | 998789587 |          |
+| rnishi   | a        | A                | abc        | def       | admin@admin.
+com | 324535353 | satara   |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from registration;
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+| username | password | confirm_password | first_name | last_name | email
+    | phone_no  | location |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+|          |          |                  | abc        | das       | admin@admin.
+com | 998789587 | satara   |
+| nishi    | nishi    | nishi            | abc        | das       | n@gmail.com
+    | 987897909 | obad     |
+| nishi00  | nishi00  | nishi00          | abc        | das       | n@gmail.com
+    | 987897909 | obad     |
+| rnishi   | a        | A                | abc        | def       | admin@admin.
+com | 324535353 | satara   |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from registration;
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+| username | password | confirm_password | first_name | last_name | email
+    | phone_no  | location |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+|          |          |                  | abc        | das       | admin@admin.
+com | 998789587 | satara   |
+| nishi    | nishi    | nishi            | abc        | das       | n@gmail.com
+    | 987897909 | obad     |
+| nishi00  | nishi00  | nishi00          | abc        | das       | n@gmail.com
+    | 987897909 | obad     |
+| rnishi   | a        | A                | abc        | def       | admin@admin.
+com | 324535353 | satara   |
++----------+----------+------------------+------------+-----------+-------------
+----+-----------+----------+
+4 rows in set (0.00 sec)
