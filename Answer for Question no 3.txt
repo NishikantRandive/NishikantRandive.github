@@ -1,0 +1,149 @@
+mysql> create table Department(DeptNo int primary key,Dname varchar(20),Location
+ varchar(15));
+
+mysql> create table Employee(EmpNo int primary key,Ename varchar(15),Job varchar
+(15),MGR varchar(20),HireDate date, salary int,DeptNo int,foreign key(DeptNo)ref
+erences Department(DeptNo));
+
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_demo |
++----------------+
+| demo11         |
+| department     |
+| employee       |
+| information    |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| DeptNo   | int(11)     | NO   | PRI | NULL    |       |
+| Dname    | varchar(20) | YES  |     | NULL    |       |
+| Location | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.09 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EmpNo    | int(11)     | NO   | PRI | NULL    |       |
+| Ename    | varchar(15) | YES  |     | NULL    |       |
+| Job      | varchar(15) | YES  |     | NULL    |       |
+| MGR      | varchar(20) | YES  |     | NULL    |       |
+| HireDate | date        | YES  |     | NULL    |       |
+| salary   | int(11)     | YES  |     | NULL    |       |
+| DeptNo   | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into department values(1,'admin','pune');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into department values(2,'developer','pune');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into department values(3,'tester','pune');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into department values(4,'support','pune');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from department;
++--------+-----------+----------+
+| DeptNo | Dname     | Location |
++--------+-----------+----------+
+|      1 | admin     | pune     |
+|      2 | developer | pune     |
+|      3 | tester    | pune     |
+|      4 | support   | pune     |
++--------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EmpNo    | int(11)     | NO   | PRI | NULL    |       |
+| Ename    | varchar(15) | YES  |     | NULL    |       |
+| Job      | varchar(15) | YES  |     | NULL    |       |
+| MGR      | varchar(20) | YES  |     | NULL    |       |
+| HireDate | date        | YES  |     | NULL    |       |
+| salary   | int(11)     | YES  |     | NULL    |       |
+| DeptNo   | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into employee values(1,'a','ad','ad','2012-10-10',13134,1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values(2,'a','ad','ad','2012-10-10',13134,1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values(3,'a','ad','ad','2012-10-10',13134,1);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into employee values(4,'a','ad','ad','2012-10-10',13134,2);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from employee;
++-------+-------+------+------+------------+--------+--------+
+| EmpNo | Ename | Job  | MGR  | HireDate   | salary | DeptNo |
++-------+-------+------+------+------------+--------+--------+
+|     1 | a     | ad   | ad   | 2012-10-10 |  13134 |      1 |
+|     2 | a     | ad   | ad   | 2012-10-10 |  13134 |      1 |
+|     3 | a     | ad   | ad   | 2012-10-10 |  13134 |      1 |
+|     4 | a     | ad   | ad   | 2012-10-10 |  13134 |      2 |
++-------+-------+------+------+------------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from department;
++--------+-----------+----------+
+| DeptNo | Dname     | Location |
++--------+-----------+----------+
+|      1 | admin     | pune     |
+|      2 | developer | pune     |
+|      3 | tester    | pune     |
+|      4 | support   | pune     |
++--------+-----------+----------+
+4 rows in set (0.00 sec)
+
+
+mysql> select Dname, count(employee.DeptNo)as no from department,employee where
+employee.DeptNo=department.DeptNo group by department.DeptNo;
++-----------+----+
+| Dname     | no |
++-----------+----+
+| admin     |  3 |
+| developer |  1 |
++-----------+----+
+2 rows in set (0.08 sec)
+
+mysql> select Dname, count(employee.DeptNo)as no from department left join emplo
+yee on employee.DeptNo=department.DeptNo group by department.DeptNo;
++-----------+----+
+| Dname     | no |
++-----------+----+
+| admin     |  3 |
+| developer |  1 |
+| tester    |  0 |
+| support   |  0 |
++-----------+----+
+4 rows in set (0.00 sec)
+
+mysql> select Dname, count(employee.DeptNo)as no from department left join emplo
+yee on employee.DeptNo=department.DeptNo group by department.DeptNo;
++-----------+----+
+| Dname     | no |
++-----------+----+
+| admin     |  3 |
+| developer |  1 |
+| tester    |  0 |
+| support   |  0 |
++-----------+----+
+4 rows in set (0.00 sec)
